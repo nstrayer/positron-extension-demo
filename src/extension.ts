@@ -1,0 +1,31 @@
+import * as vscode from "vscode";
+// Use helper function to safely get positron api if it exists
+import { getPositronApi } from "@posit-dev/positron-types";
+
+export function activate(context: vscode.ExtensionContext) {
+  const disposable = vscode.commands.registerCommand(
+    "myExtension.helloWorld",
+    () => {
+      const positron = getPositronApi();
+
+      if (positron === undefined) {
+        vscode.window.showInformationMessage("Failed to find positron api");
+        return;
+      }
+
+      // Preview a URL in Positron's viewer
+      positron.window.previewUrl(
+        vscode.Uri.parse("https://positron.posit.co/")
+      );
+
+      // Execute code in the active runtime
+      positron.runtime.executeCode(
+        "python",
+        'print("Hello Positron from the extension")',
+        true
+      );
+    }
+  );
+
+  context.subscriptions.push(disposable);
+}

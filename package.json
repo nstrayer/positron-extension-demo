@@ -1,0 +1,42 @@
+{
+	"name": "positron-extension-demo",
+	"displayName": "Positron Extension Demo",
+	"description": "Demo extension showing how to use @posit-dev/positron-types for Positron IDE integration",
+	"version": "0.0.1",
+	"publisher": "posit-dev",
+	"repository": "https://github.com/posit-dev/positron-extension-demo",
+	"engines": {
+		"vscode": "^1.74.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "myExtension.helloWorld",
+				"title": "Hello Positron"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint",
+		"watch": "tsc -watch -p ./"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.13.0",
+		"@stylistic/eslint-plugin": "^2.9.0",
+		"@types/node": "^20",
+		"@types/vscode": "^1.100.0",
+		"eslint": "^9.13.0",
+		"typescript": "^5.8.2",
+		"typescript-eslint": "^8.26.0"
+	},
+	"dependencies": {
+		"@posit-dev/positron-types": "^1.0.13"
+	}
+}
