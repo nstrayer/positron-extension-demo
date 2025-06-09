@@ -1,7 +1,7 @@
 {
 	"name": "positron-extension-demo",
 	"displayName": "Positron Extension Demo",
-	"description": "Demo extension showing how to use @posit-dev/positron-types for Positron IDE integration",
+	"description": "Demo extension showing how to use @posit-dev/positron for Positron IDE integration",
 	"version": "0.0.1",
 	"publisher": "posit-dev",
 	"repository": "https://github.com/posit-dev/positron-extension-demo",

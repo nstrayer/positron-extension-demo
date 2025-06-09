@@ -1,6 +1,6 @@
 # Positron Extension Demo
 
-This is a demo extension that shows how to use the `@posit-dev/positron-types` npm package to add custom functionality for the Positron data science IDE.
+This is a demo extension that shows how to use the `@posit-dev/positron` npm package to add custom functionality for the Positron data science IDE.
 
 The extension demonstrates how to:
 - Safely detect if running in Positron vs VS Code
@@ -18,7 +18,7 @@ The screenshot shows the extension running in Positron, demonstrating:
 
 ## Positron API Features
 
-This extension demonstrates the following Positron APIs from `@posit-dev/positron-types`:
+This extension demonstrates the following Positron APIs from `@posit-dev/positron`:
 
 ### `tryAcquirePositronApi()`
 - Safely detects if the extension is running in Positron
@@ -55,4 +55,4 @@ The extension uses standard VS Code APIs for basic functionality:
 ## Learn More
 
 - [Positron Documentation](https://positron.posit.co/)
-- [@posit-dev/positron-types on npm](https://www.npmjs.com/package/@posit-dev/positron-types)
+- [@posit-dev/positron on npm](https://www.npmjs.com/package/@posit-dev/positron)
