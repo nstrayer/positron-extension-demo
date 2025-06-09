@@ -20,7 +20,7 @@ The screenshot shows the extension running in Positron, demonstrating:
 
 This extension demonstrates the following Positron APIs from `@posit-dev/positron-types`:
 
-### `getPositronApi()`
+### `tryAcquirePositronApi()`
 - Safely detects if the extension is running in Positron
 - Returns the Positron API object or `undefined` if not available
 
@@ -47,7 +47,7 @@ The extension uses standard VS Code APIs for basic functionality:
 ## Running the Extension
 
 - Run `npm install` in terminal to install dependencies
-- Run the `Run Extension` target in the Debug View. This will:
+- Running the `Run Extension` target in the Debug View. This will:
 	- Start a task `npm: watch` to compile the code
 	- Run the extension in a new Positron or VS Code window
 - Execute the "Hello Positron" command from the Command Palette
