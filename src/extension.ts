@@ -1,11 +1,14 @@
 import * as vscode from "vscode";
 // Use helper function to safely get positron api if it exists
-import { tryAcquirePositronApi } from "@posit-dev/positron";
+import { tryAcquirePositronApi, inPositron } from "@posit-dev/positron";
 
 export function activate(context: vscode.ExtensionContext) {
   const disposable = vscode.commands.registerCommand(
     "myExtension.helloWorld",
     () => {
+    
+      console.log(`Hello from ${inPositron ? 'Positron': 'VSCode'}!`)
+
       const positron = tryAcquirePositronApi();
 
       if (positron === undefined) {
