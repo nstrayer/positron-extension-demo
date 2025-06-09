@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 // Use helper function to safely get positron api if it exists
-import { getPositronApi } from "@posit-dev/positron-types";
+import { getPositronApi } from "@posit-dev/positron";
 
 export function activate(context: vscode.ExtensionContext) {
   const disposable = vscode.commands.registerCommand(

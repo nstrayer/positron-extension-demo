@@ -37,6 +37,6 @@
 		"typescript-eslint": "^8.26.0"
 	},
 	"dependencies": {
-		"@posit-dev/positron-types": "^1.0.13"
+		"@posit-dev/positron": "^0.1.1"
 	}
 }
