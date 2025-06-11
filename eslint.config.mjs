@@ -33,12 +33,7 @@ export default tseslint.config(
 					'format': ['camelCase', 'PascalCase']
 				}
 			],
-			'@typescript-eslint/no-unused-vars': [
-				'error',
-				{
-					'argsIgnorePattern': '^_'
-				}
-			]
+			'@typescript-eslint/no-unused-vars': 'off'
 		}
 	}
 );

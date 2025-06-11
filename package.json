@@ -18,8 +18,21 @@
 			{
 				"command": "myExtension.helloWorld",
 				"title": "Hello Positron"
+			},
+			{
+				"command": "demoExtension.previewWindow",
+				"title": "Preview Window Please"
 			}
-		]
+		],
+		"chatParticipants": [
+            {
+                "id": "data-assistant",
+                "name": "DA",
+                "fullName": "Data Assistant",
+                "description": "Lemme see that data",
+                "isSticky": true
+            }
+        ]
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
