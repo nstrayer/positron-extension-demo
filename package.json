@@ -18,8 +18,25 @@
 			{
 				"command": "myExtension.helloWorld",
 				"title": "Hello Positron"
+			},
+			{
+				"command": "demoExtension.previewWindow",
+				"title": "Preview Window Please"
+			},
+			{
+				"command": "demoExtension.registerDriver",
+				"title": "Register demo connection"
 			}
-		]
+		],
+		"chatParticipants": [
+            {
+                "id": "data-assistant",
+                "name": "DA",
+                "fullName": "Data Assistant",
+                "description": "Lemme see that data",
+                "isSticky": true
+            }
+        ]
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
@@ -37,6 +54,6 @@
 		"typescript-eslint": "^8.26.0"
 	},
 	"dependencies": {
-		"@posit-dev/positron": "^0.1.3"
+		"@posit-dev/positron": "^0.1.6"
 	}
 }

@@ -1,34 +1,29 @@
 import * as vscode from "vscode";
-// Use helper function to safely get positron api if it exists
-import { tryAcquirePositronApi, inPositron } from "@posit-dev/positron";
+import { registerHelloWorldCommand } from "./commands/helloWorld";
+import { registerPreviewDemoCommand } from "./commands/previewDemo";
+import { registerDataAssistantChatParticipant } from "./chat/dataAssistant";
+import { registerWindowDemos } from "./demos/window";
+import { registerRuntimeDemos } from "./demos/runtime";
+import { registerAIDemos } from "./demos/ai";
+import { registerConnectionDemos } from "./demos/connections";
+import { registerMethodsDemos } from "./demos/methods";
+import { registerEnvironmentDemos } from "./demos/environment";
+import { registerLanguageDemos } from "./demos/languages";
+import { registerEventListeners } from "./events/eventListeners";
 
 export function activate(context: vscode.ExtensionContext) {
-  const disposable = vscode.commands.registerCommand(
-    "myExtension.helloWorld",
-    () => {
-    
-      console.log(`Hello from ${inPositron ? 'Positron': 'VSCode'}!`)
-
-      const positron = tryAcquirePositronApi();
-
-      if (positron === undefined) {
-        vscode.window.showInformationMessage("Failed to find positron api");
-        return;
-      }
-
-      // Preview a URL in Positron's viewer
-      positron.window.previewUrl(
-        vscode.Uri.parse("https://positron.posit.co/")
-      );
-
-      // Execute code in the active runtime
-      positron.runtime.executeCode(
-        "python",
-        'print("Hello Positron from the extension")',
-        true
-      );
-    }
-  );
-
-  context.subscriptions.push(disposable);
+  // Register commands
+  [
+    registerDataAssistantChatParticipant,
+    registerHelloWorldCommand,
+    registerPreviewDemoCommand,
+    registerWindowDemos,
+    registerRuntimeDemos,
+    registerAIDemos,
+    registerConnectionDemos,
+    registerMethodsDemos,
+    registerEnvironmentDemos,
+    registerLanguageDemos,
+    registerEventListeners,
+  ].forEach((register) => register(context));
 }
