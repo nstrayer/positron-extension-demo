@@ -2,35 +2,6 @@ import * as vscode from "vscode";
 import { tryAcquirePositronApi } from "@posit-dev/positron";
 
 export function registerWindowDemos(context: vscode.ExtensionContext) {
-  // Preview Window Demo
-  context.subscriptions.push(
-    vscode.commands.registerCommand("demoExtension.previewWindow", async () => {
-      const positronApi = tryAcquirePositronApi();
-      if (!positronApi) {
-        vscode.window.showInformationMessage("Positron API not available");
-        return;
-      }
-
-      // Preview a local development server
-      positronApi.window.previewUrl(vscode.Uri.parse("http://localhost:3000"));
-
-      // Show HTML content from a file
-      positronApi.window.previewHtml("/path/to/report.html");
-
-      // Create a custom preview panel with full control
-      const panel = positronApi.window.createPreviewPanel(
-        "my-extension.preview",
-        "My Data Visualization",
-        false, // don't preserve focus
-        {
-          enableScripts: true,
-          localResourceRoots: [vscode.Uri.file("/path/to/assets")],
-        }
-      );
-      panel.webview.html = `<html><body><h1>Custom Content</h1></body></html>`;
-    })
-  );
-
   // Dialog Demo
   context.subscriptions.push(
     vscode.commands.registerCommand("demoExtension.dialogDemo", async () => {
@@ -57,7 +28,9 @@ export function registerWindowDemos(context: vscode.ExtensionContext) {
     // Listen for console width changes to optimize output formatting
     context.subscriptions.push(
       positronApi.window.onDidChangeConsoleWidth((width) => {
-        vscode.window.showInformationMessage(`Console width changed to ${width} characters`);
+        vscode.window.showInformationMessage(
+          `Console width changed to ${width} characters`
+        );
         // Adjust your output formatting accordingly
       })
     );

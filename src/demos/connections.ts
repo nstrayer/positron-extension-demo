@@ -6,71 +6,49 @@ export function registerConnectionDemos(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand(
       "demoExtension.registerDriver",
       async () => {
-        const positronApi = tryAcquirePositronApi();
-        if (!positronApi) {
-          throw new Error("Positron API not available");
-        }
+        const positron = tryAcquirePositronApi();
+        if (positron) {
+          positron.connections.registerConnectionDriver({
+            driverId: "mockdb",
+            metadata: {
+              languageId: "python",
+              name: "Mock Database",
+              inputs: [
+                {
+                  id: "database",
+                  label: "Database Name",
+                  type: "string",
+                  value: "test_db",
+                },
+              ],
+            },
+            generateCode: (inputs) => {
+              const dbName =
+                inputs.find((i) => i.id === "database")?.value || "test_db";
 
-        // Register a custom database driver
-        positronApi.connections.registerConnectionDriver({
-          driverId: "my-database",
-          metadata: {
-            languageId: "sql",
-            name: "My Custom Database",
-            base64EncodedIconSvg: "data:image/svg+xml;base64,...",
-            inputs: [
-              {
-                id: "host",
-                label: "Host",
-                type: "string",
-                value: "localhost",
-              },
-              {
-                id: "port",
-                label: "Port",
-                type: "number",
-                value: "5432",
-              },
-              {
-                id: "database",
-                label: "Database",
-                type: "string",
-              },
-              {
-                id: "auth_type",
-                label: "Authentication",
-                type: "option",
-                options: [
-                  { identifier: "password", title: "Username/Password" },
-                  { identifier: "token", title: "API Token" },
-                ],
-              },
-            ],
-          },
-          generateCode: (inputs) => {
-            const host = inputs.find((i) => i.id === "host")?.value;
-            const port = inputs.find((i) => i.id === "port")?.value;
-            const database = inputs.find((i) => i.id === "database")?.value;
-            return `connect_to_database("${host}:${port}/${database}")`;
-          },
-          connect: async (code) => {
-            // Execute the connection code in the active runtime
-            await positronApi.runtime.executeCode("python", code, true);
-          },
-          checkDependencies: async () => {
-            // Check if required packages are installed
-            try {
-              await positronApi.runtime.executeCode(
-                "python",
-                "import my_database_library",
-                false
-              );
-              return true;
-            } catch {
-              return false;
-            }
-          },
-        });
+              // Generate Python code that creates a mock connection
+              return `
+# Mock database connection
+class MockDatabase:
+    def __init__(self, name):
+        self.name = name
+        self.tables = ['users', 'products', 'orders']
+        print(f"Connected to mock database: {name}")
+        print(f"Available tables: {', '.join(self.tables)}")
+    
+    def query(self, sql):
+        return f"Mock result for: {sql}"
+
+# Create connection
+mock_db = MockDatabase("test_db")
+print("\\nConnection successful! Try: mock_db.query('SELECT * FROM users')")
+`;
+            },
+            connect: async (code) => {
+              await positron.runtime.executeCode("python", code, true);
+            },
+          });
+        }
       }
     )
   );

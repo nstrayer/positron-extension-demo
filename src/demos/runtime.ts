@@ -12,11 +12,16 @@ export function registerRuntimeDemos(context: vscode.ExtensionContext) {
 
       // Execute code in a runtime with full observation
       const observer = {
-        onStarted: () => vscode.window.showInformationMessage("Execution started"),
-        onOutput: (message: any) => vscode.window.showInformationMessage("Output:", message),
-        onError: (error: any) => vscode.window.showInformationMessage("Error:", error),
-        onCompleted: (result: any) => vscode.window.showInformationMessage("Result:", result),
-        onFinished: () => vscode.window.showInformationMessage("Execution finished"),
+        onStarted: () =>
+          vscode.window.showInformationMessage("Execution started"),
+        onOutput: (message: any) =>
+          vscode.window.showInformationMessage("Output:", message),
+        onError: (error: any) =>
+          vscode.window.showInformationMessage("Error:", error),
+        onCompleted: (result: any) =>
+          vscode.window.showInformationMessage("Result:", result),
+        onFinished: () =>
+          vscode.window.showInformationMessage("Execution finished"),
       };
 
       // Returns a promise that resolves to execution results (MIME data map)
@@ -49,7 +54,7 @@ export function registerRuntimeDemos(context: vscode.ExtensionContext) {
         const variables = await positronApi.runtime.getSessionVariables(
           foregroundSession.metadata.sessionId
         );
-        vscode.window.showInformationMessage("Current variables:", variables);
+        // vscode.window.showInformationMessage("Current variables:", variables);
       }
 
       // Get available runtimes for a language
@@ -57,15 +62,17 @@ export function registerRuntimeDemos(context: vscode.ExtensionContext) {
         "python"
       );
       if (pythonRuntime) {
-        vscode.window.showInformationMessage(`Preferred Python runtime: ${pythonRuntime.runtimeName}`);
+        vscode.window.showInformationMessage(
+          `Preferred Python runtime: ${pythonRuntime.runtimeName}`
+        );
       }
 
-      // Debug runtime issues by showing output channels
-      if (foregroundSession) {
-        // List available output channels
-        const channels = foregroundSession.listOutputChannels?.() || [];
-        vscode.window.showInformationMessage("Available channels:", channels);
-      }
+      // // Debug runtime issues by showing output channels
+      // if (foregroundSession) {
+      //   // List available output channels
+      //   const channels = foregroundSession.listOutputChannels?.() || [];
+      //   vscode.window.showInformationMessage("Available channels:", channels);
+      // }
     })
   );
 
