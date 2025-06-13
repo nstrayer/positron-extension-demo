@@ -29,7 +29,11 @@ suite('Extension Test Suite', () => {
 			'demoExtension.previewWindow',
 			'demoExtension.registerDriver',
 			'demoExtension.dialogDemo',
-			'demoExtension.plotSettings'
+			'demoExtension.plotSettings',
+			'demoExtension.executeCode',
+			'demoExtension.sessionInfo',
+			'demoExtension.methodsDemo',
+			'demoExtension.envVars'
 		];
 
 		expectedCommands.forEach(cmd => {

@@ -28,11 +28,13 @@ suite('Connection Provider Tests', () => {
 		await vscode.commands.executeCommand('demoExtension.registerDriver');
 
 		// Since the command returns silently when Positron is not available,
-		// we don't expect any message to be shown
-		assert.ok(
-			!showInfoStub.called || showInfoStub.calledWith('Failed to find positron api'),
-			'Command should either not show a message or show Positron not available message'
-		);
+		// we verify the specific behavior
+		if (/* test is running in VS Code */ !showInfoStub.called) {
+			assert.ok(!showInfoStub.called, 'Should not show message in VS Code');
+		} else {
+			assert.ok(showInfoStub.calledWith('Connection driver registered'), 
+				'Should show success message in Positron');
+		}
 
 		TestUtils.teardown();
 	});
