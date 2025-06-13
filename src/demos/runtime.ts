@@ -7,18 +7,19 @@ export function registerRuntimeDemos(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand("demoExtension.executeCode", async () => {
       const positronApi = tryAcquirePositronApi();
       if (!positronApi) {
-        throw new Error("Positron API not available");
+        vscode.window.showInformationMessage("Positron API not available");
+        return;
       }
 
       // Execute code in a runtime with full observation
       const observer = {
         onStarted: () =>
           vscode.window.showInformationMessage("Execution started"),
-        onOutput: (message: any) =>
+        onOutput: (message: string) =>
           vscode.window.showInformationMessage("Output:", message),
-        onError: (error: any) =>
+        onError: (error: string) =>
           vscode.window.showInformationMessage("Error:", error),
-        onCompleted: (result: any) =>
+        onCompleted: (result: Record<string, unknown>) =>
           vscode.window.showInformationMessage("Result:", result),
         onFinished: () =>
           vscode.window.showInformationMessage("Execution finished"),
@@ -42,7 +43,9 @@ export function registerRuntimeDemos(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand("demoExtension.sessionInfo", async () => {
       const positronApi = tryAcquirePositronApi();
-      if (!positronApi) return;
+      if (!positronApi) {
+        return;
+      }
 
       // Get active sessions and work with them
       const sessions = await positronApi.runtime.getActiveSessions();

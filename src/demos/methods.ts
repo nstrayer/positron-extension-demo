@@ -6,7 +6,8 @@ export function registerMethodsDemos(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand("demoExtension.methodsDemo", async () => {
       const positronApi = tryAcquirePositronApi();
       if (!positronApi) {
-        throw new Error("Positron API not available");
+        vscode.window.showInformationMessage("Positron API not available");
+        return;
       }
 
       // Get the current editor context

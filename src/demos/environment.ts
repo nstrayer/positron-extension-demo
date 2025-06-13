@@ -6,7 +6,8 @@ export function registerEnvironmentDemos(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand("demoExtension.envVars", async () => {
       const positronApi = tryAcquirePositronApi();
       if (!positronApi) {
-        throw new Error("Positron API not available");
+        vscode.window.showInformationMessage("Positron API not available");
+        return;
       }
 
       // Get all environment variable contributions

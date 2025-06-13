@@ -5,7 +5,8 @@ import { MyStatementRangeProvider, MyHelpTopicProvider } from "../providers/lang
 export function registerLanguageDemos(context: vscode.ExtensionContext) {
   const positronApi = tryAcquirePositronApi();
   if (!positronApi) {
-    throw new Error("Positron API not available");
+    // Gracefully handle when Positron API is not available
+    return;
   }
 
   // Register statement range provider for your language

@@ -6,7 +6,9 @@ export function registerWindowDemos(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand("demoExtension.dialogDemo", async () => {
       const positronApi = tryAcquirePositronApi();
-      if (!positronApi) return;
+      if (!positronApi) {
+        return;
+      }
 
       // Show a confirmation dialog
       const confirmed = await positronApi.window.showSimpleModalDialogPrompt(
@@ -40,7 +42,9 @@ export function registerWindowDemos(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand("demoExtension.plotSettings", async () => {
       const positronApi = tryAcquirePositronApi();
-      if (!positronApi) return;
+      if (!positronApi) {
+        return;
+      }
 
       // Get plot rendering settings for custom visualizations
       const plotSettings = await positronApi.window.getPlotsRenderSettings();
