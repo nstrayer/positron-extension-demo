@@ -35,6 +35,22 @@
 			{
 				"command": "demoExtension.plotSettings",
 				"title": "Positron Plot Settings Demo"
+			},
+			{
+				"command": "demoExtension.executeCode",
+				"title": "Execute Code Demo"
+			},
+			{
+				"command": "demoExtension.sessionInfo",
+				"title": "Session Info Demo"
+			},
+			{
+				"command": "demoExtension.methodsDemo",
+				"title": "Methods Demo"
+			},
+			{
+				"command": "demoExtension.envVars",
+				"title": "Environment Variables Demo"
 			}
 		]
 	},
