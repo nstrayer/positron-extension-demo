@@ -6,7 +6,8 @@
 	"publisher": "posit-dev",
 	"repository": "https://github.com/posit-dev/positron-extension-demo",
 	"engines": {
-		"vscode": "^1.74.0"
+		"vscode": "^1.74.0",
+		"positron": "^2025.6.x"
 	},
 	"categories": [
 		"Other"
